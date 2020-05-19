@@ -19,7 +19,7 @@
 ![image](https://github.com/skymarlio82/ford-findx/blob/master/screens/pic02.png)
 - 从Guthub提取真实用户信息
 ![image](https://github.com/skymarlio82/ford-findx/blob/master/screens/pic03.png)
-- API:用户输入任意重要地标查询半径5公里范围内最近的中石化加油站和福特4S店，将结果记录。利用h2-console直接查询结果
+- API:用户输入任意重要地标查询半径5公里范围内最近的中石化加油站和福特4S店，将结果记录。
 ![image](https://github.com/skymarlio82/ford-findx/blob/master/screens/pic04.png)
 - API:查询系统中每个用户查询最频繁的加油站和4S店
 ![image](https://github.com/skymarlio82/ford-findx/blob/master/screens/pic05.png)
