@@ -1,4 +1,4 @@
-# ford-findx for Ford Auto China Application Demo
+# ford-findx for Ford Auto China
 
 ## API URL explain
 - http://localhost:8080/ford-findx/ (登录的形式化主页面，点击按钮后会跳到github后台做用户名密码校验)
@@ -11,3 +11,11 @@
 - 做了3个H5页面
 - 使用spring-boot-2.1.4完成所有功能
 - 代码已经提交进入github仓库当中
+
+## screenshots
+![image](https://github.com/skymarlio82/ford-findx/blob/master/screens/pic01.png)
+![image](https://github.com/skymarlio82/ford-findx/blob/master/screens/pic02.png)
+![image](https://github.com/skymarlio82/ford-findx/blob/master/screens/pic03.png)
+![image](https://github.com/skymarlio82/ford-findx/blob/master/screens/pic04.png)
+![image](https://github.com/skymarlio82/ford-findx/blob/master/screens/pic05.png)
+![image](https://github.com/skymarlio82/ford-findx/blob/master/screens/pic06.png)
