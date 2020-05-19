@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="webTemplateBasic" template="/jsp/template/tiles/TilesTemplateBasic.jsp">
+		<put-attribute name="BodyContent" value="BodyContent" />
+	</definition>
+	<definition name="webTemplateLogin" template="/jsp/template/tiles/TilesTemplateLogin.jsp">
+		<put-attribute name="PageTitle"   value="PageTitle" />
+		<put-attribute name="BodyContent" value="BodyContent" />
+	</definition>
+	<definition name="webTemplateLogout" template="/jsp/template/tiles/TilesTemplateLogout.jsp">
+		<put-attribute name="PageTitle"   value="PageTitle" />
+		<put-attribute name="BodyContent" value="BodyContent" />
+	</definition>
+	<definition name="GLOBAL_SYSTEM_INFO_PAGE" extends="webTemplateBasic">
+		<put-attribute name="BodyContent" value="/jsp/default/info/systemInfoBodyContent.jsp" />
+	</definition>
+	<definition name="USER_LOGIN_FORM_PAGE" extends="webTemplateLogin">
+		<put-attribute name="PageTitle"   value="Ford.China | Findx - User Login" />
+		<put-attribute name="BodyContent" value="/jsp/default/login/userLoginFormBodyContent.jsp" />
+	</definition>
+	<definition name="USER_LOGOUT_END_PAGE" extends="webTemplateLogout">
+		<put-attribute name="PageTitle"   value="Ford.China | Findx - User Logout" />
+		<put-attribute name="BodyContent" value="/jsp/default/logout/userLogoutEndBodyContent.jsp" />
+	</definition>
+
+</tiles-definitions>

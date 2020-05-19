@@ -1,0 +1,21 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /ford-findx
+spring:
+  profiles:
+    active: dev
+  h2:
+    console:
+      enabled: true
+  datasource:
+    druid:
+      driver-class-name: org.h2.Driver
+      url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      username: sa
+      password:
+    schema: classpath*:sql/schema.sql
+    data: classpath*:sql/data.sql
+github-client-secret: ENC(WoJq9PfJNIl0TEPhTtuvYa34D3o6D2KekPHF80SiGz86rmAoElkdoP2ZTZYufL727ksVJovU9TU=)
+#github-client-secret: ENC(QLkx83lqXCnpT1zgp8miYO0lBgTLjHwu8ibhVuXB62cnnvbVf3CAMaW6FoR9yTcIYDvn6H5QjpI=)
+baidu-ak: ENC(LzuyAwVCV1WHmN2kAAOB9uHvatXLgp78G86Tcah7NULvsZ1t4zxbGTrDYCjNdvdT)

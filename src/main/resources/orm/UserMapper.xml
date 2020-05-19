@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ford.apps.findx.data.dao.UserMapper">
+	<sql id="USER_ROLE_AUTH_COLUMNS">
+		a.ID as USER_ID,
+		a.USERNAME as USER_NAME,
+		a.PASSWORD as USER_PASSWORD,
+		c.ID as AUTHORITY_ID,
+		c.NAME as AUTHORITY_NAME
+	</sql>
+	<resultMap id="detailedUserResultMap" type="User">
+		<id property="id" column="USER_ID" />
+		<result property="username" column="USER_NAME" />
+		<result property="password" column="USER_PASSWORD" />
+		<collection property="authorities" ofType="Authority">
+			<id property="id" column="AUTHORITY_ID" />
+			<result property="name" column="AUTHORITY_NAME" />
+		</collection>
+	</resultMap>
+	<select id="findByUsername" resultMap="detailedUserResultMap" parameterType="java.lang.String">
+		select
+		<include refid="USER_ROLE_AUTH_COLUMNS" />
+		from USER a
+		inner join USER_AUTHORITY b on a.ID = b.USER_ID
+		inner join AUTHORITY c on b.AUTHORITY_ID = c.ID
+		where a.USERNAME = #{username}
+	</select>
+	<select id="findById" resultMap="detailedUserResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="USER_ROLE_AUTH_COLUMNS" />
+		from USER a
+		inner join USER_AUTHORITY b on a.ID = b.USER_ID
+		inner join AUTHORITY c on b.AUTHORITY_ID = c.ID
+		where a.ID = #{id}
+	</select>
+	<select id="findAll" resultMap="detailedUserResultMap">
+		select
+		<include refid="USER_ROLE_AUTH_COLUMNS" />
+		from USER a
+		inner join USER_AUTHORITY b on a.ID = b.USER_ID
+		inner join AUTHORITY c on b.AUTHORITY_ID = c.ID
+	</select>
+	<update id="updatePasswordByUsername">
+		<![CDATA[
+			update USER SET PASSWORD = #{password} WHERE USERNAME = #{username}
+		 ]]>
+	</update>
+
+</mapper>

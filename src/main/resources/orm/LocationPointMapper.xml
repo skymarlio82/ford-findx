@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ford.apps.findx.data.dao.LocationPointMapper">
+	<sql id="LOCATION_POINT_COLUMNS">
+		a.ID as ID,
+		a.NAME as NAME,
+		a.ADDRESS as ADDRESS,
+		a.PROVINCE as PROVINCE,
+		a.CITY as CITY,
+		a.AREA as AREA,
+		a.STREET_ID as STREET_ID,
+		a.LOGIN_ID as LOGIN_ID,
+		a.DATE_TIME as DATE_TIME
+	</sql>
+	<resultMap id="detailedLocationPointResultMap" type="LocationPoint">
+		<id property="id" column="ID" />
+		<result property="name" column="NAME" />
+		<result property="address" column="ADDRESS" />
+		<result property="province" column="PROVINCE" />
+		<result property="city" column="CITY" />
+		<result property="area" column="AREA" />
+		<result property="streetId" column="STREET_ID" />
+		<result property="loginId" column="LOGIN_ID" />
+		<result property="dateTime" column="DATE_TIME" />
+	</resultMap>
+	<select id="findTops" resultMap="detailedLocationPointResultMap">
+		select
+		<include refid="LOCATION_POINT_COLUMNS" />
+		from LOCATION_POINT a
+		inner join (select count(a.ID) as NUM, a.ID from LOCATION_POINT a where a.NAME like '%加油站%' group by a.ID order by count(a.ID) desc limit 1) b
+		on a.ID = b.ID
+		union all
+		select
+		<include refid="LOCATION_POINT_COLUMNS" />
+		from LOCATION_POINT a
+		inner join (select count(a.ID) as NUM, a.ID from LOCATION_POINT a where a.NAME like '%4S店%' group by a.ID order by count(a.ID) desc limit 1) b
+		on a.ID = b.ID
+	</select>
+	<insert id="insertBatch">
+		<![CDATA[
+			insert into LOCATION_POINT (NAME, ADDRESS, PROVINCE, CITY, AREA, STREET_ID, LOGIN_ID, DATE_TIME) 
+			values 
+		]]>
+		<foreach collection="lps" item="lp" separator=",">
+			<![CDATA[ (#{lp.name}, #{lp.address}, #{lp.province}, #{lp.city}, #{lp.area}, #{lp.streetId}, #{lp.loginId}, #{lp.dateTime}) ]]>
+		</foreach>
+	</insert>
+
+</mapper>

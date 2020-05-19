@@ -1,0 +1,37 @@
+server:
+  servlet:
+    session:
+      tracking-modes: cookie
+spring:
+  profiles:
+    active: dev
+  datasource:
+    name: druid_ds
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      filters: stat
+      initial-size: 1
+      min-idle: 1
+      max-active: 10
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+mybatis:
+  mapper-locations: classpath:orm/*.xml
+  type-aliases-package: com.ford.apps.findx.data.entity
+jasypt:
+  encryptor:
+    password: EbfYkitulv73I2p0mXI50JMXoaxZTKJ7
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+    com.ford.apps.findx: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
