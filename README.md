@@ -13,6 +13,7 @@
 - 代码已经提交进入github仓库当中
 
 ## screenshots
+- GitHub的OAuth2配置(clientId + secret)
 ![image](https://github.com/skymarlio82/ford-findx/blob/master/screens/pic01.png)
 ![image](https://github.com/skymarlio82/ford-findx/blob/master/screens/pic02.png)
 ![image](https://github.com/skymarlio82/ford-findx/blob/master/screens/pic03.png)
