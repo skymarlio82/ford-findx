@@ -1,5 +1,8 @@
 # ford-findx for Ford Auto China
 
+## 备注说明
+- 原先计划是直接将应用部署到我的阿里云ECS服务器上的，但是由于阿里云访问GitHub在国外的API服务器有“长城防火墙”和谐的问题。所以说整个演示流程都是在我个人的本地机上的。(本地机有安装VPN)
+
 ## API URL explain
 - http://localhost:8080/ford-findx/ (登录的形式化主页面，点击按钮后会跳到github后台做用户名密码校验)
 - http://localhost:8080/ford-findx/authorization/callback (github的OAuth2回调路径，主要做提取token，拿用户的信息，同样也包括站点产生的二次token)
