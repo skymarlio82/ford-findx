@@ -27,5 +27,5 @@
 ![image](https://github.com/skymarlio82/ford-findx/blob/master/screens/pic06.png)
 - BaiduMap Result in H2 InMemory DB
 ![image](https://github.com/skymarlio82/ford-findx/blob/master/screens/pic07.png)
-- 单元测试结果
+- 单元测试结果 (Unit Test Cases)
 ![image](https://github.com/skymarlio82/ford-findx/blob/master/screens/pic08.png)
