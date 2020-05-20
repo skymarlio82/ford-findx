@@ -33,6 +33,6 @@ public class UserService {
 
 	@Transactional
 	public void updatePassword(String username, String password) {
-		userMapper.updatePasswordByUsername(username, password);
+		userMapper.updatePwdByName(username, password);
 	}
 }

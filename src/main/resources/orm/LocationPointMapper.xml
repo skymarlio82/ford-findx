@@ -23,6 +23,11 @@
 		<result property="loginId" column="LOGIN_ID" />
 		<result property="dateTime" column="DATE_TIME" />
 	</resultMap>
+	<select id="findAll" resultMap="detailedLocationPointResultMap">
+		select
+		<include refid="LOCATION_POINT_COLUMNS" />
+		from LOCATION_POINT a
+	</select>
 	<select id="findTops" resultMap="detailedLocationPointResultMap">
 		select
 		<include refid="LOCATION_POINT_COLUMNS" />

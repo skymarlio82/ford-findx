@@ -40,7 +40,7 @@
 		inner join USER_AUTHORITY b on a.ID = b.USER_ID
 		inner join AUTHORITY c on b.AUTHORITY_ID = c.ID
 	</select>
-	<update id="updatePasswordByUsername">
+	<update id="updatePwdByName">
 		<![CDATA[
 			update USER SET PASSWORD = #{password} WHERE USERNAME = #{username}
 		 ]]>

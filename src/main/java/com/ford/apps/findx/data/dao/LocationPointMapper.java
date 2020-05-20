@@ -11,6 +11,7 @@ import com.ford.apps.findx.data.entity.LocationPoint;
 @Mapper
 public interface LocationPointMapper {
 
+	List<LocationPoint> findAll();
     List<LocationPoint> findTops();
     void insertBatch(@Param("lps") List<LocationPoint> lps);
 }

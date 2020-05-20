@@ -62,8 +62,6 @@ public class AuthService {
 		AccessTokenVo atvo = res1.getBody();
 		headers.set("Authorization", "token " + atvo.getAccess_token());
 		String url2 = AppConstant.API_USER_INFO_HEAD_PART + "?access_token=" + atvo.getAccess_token();
-//		String url2 = AppConstant.API_USER_INFO_HEAD_PART;
-//		ResponseEntity<HashMap> res2 = restTemplate.exchange(url2, HttpMethod.GET, req, HashMap.class, 1);
 		ResponseEntity<HashMap> res2 = restTemplate.getForEntity(url2, HashMap.class);
 		HashMap<String, String> info = res2.getBody();
 		UserInfoVo userInfo = new UserInfoVo(info.get("login"), info.get("avatar_url"),

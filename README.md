@@ -25,3 +25,5 @@
 ![image](https://github.com/skymarlio82/ford-findx/blob/master/screens/pic05.png)
 - shiro按照角色赋予权限
 ![image](https://github.com/skymarlio82/ford-findx/blob/master/screens/pic06.png)
+- BaiduMap Result in H2 InMemory DB
+![image](https://github.com/skymarlio82/ford-findx/blob/master/screens/pic07.png)

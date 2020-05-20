@@ -13,5 +13,5 @@ public interface UserMapper {
     User findByUsername(String username);
     User findById(long id);
     List<User> findAll();
-    void updatePasswordByUsername(String username, String password);
+    void updatePwdByName(String username, String password);
 }
