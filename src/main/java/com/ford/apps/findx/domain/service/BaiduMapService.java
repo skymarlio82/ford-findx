@@ -39,7 +39,7 @@ public class BaiduMapService {
 		MapResult mapResult = JSON.parseObject(info, MapResult.class);
 		List<LocationPoint> lps = mapResult.getResults().stream()
 			.map(p -> new LocationPoint(0, p.getName(), p.getAddress(), p.getProvince(), p.getCity(),
-				p.getArea(), p.getStreet_id(), username, (new Date()))).collect(Collectors.toList());
+				p.getArea(), "street-id", username, (new Date()))).collect(Collectors.toList());
 		locationPointMapper.insertBatch(lps);
 		return lps;
 	}
