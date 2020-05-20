@@ -3,6 +3,8 @@ package com.ford.apps.findx.web.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +14,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ford.apps.findx.common.constant.AppConstant;
 import com.ford.apps.findx.data.entity.LocationPoint;
 import com.ford.apps.findx.data.entity.User;
 import com.ford.apps.findx.domain.service.AuthService;
 import com.ford.apps.findx.domain.service.BaiduMapService;
 import com.ford.apps.findx.domain.service.UserService;
 import com.ford.apps.findx.util.ResponseUtil;
+import com.ford.apps.findx.web.vo.UserInfoVo;
 
 @Controller
 public class ApiController {
@@ -30,6 +34,9 @@ public class ApiController {
 
 	@Autowired
 	private BaiduMapService baiduMapService = null;
+
+	@Autowired
+	private HttpSession session = null;
 
 	@RequiresRoles(value={"ADMIN","USER"}, logical=Logical.OR)
 	@GetMapping(value="/api/logout/user")
@@ -60,7 +67,8 @@ public class ApiController {
 	@ResponseBody
 	public Object apiOfSearchOnMap(@RequestParam(required=true, name="lat") String lat,
 		@RequestParam(required=true, name="lng") String lng) {
-		List<LocationPoint> list = baiduMapService.searchOnPurpose(lat, lng);
+		UserInfoVo userInfo = (UserInfoVo)session.getAttribute(AppConstant.USER_CONFIG);
+		List<LocationPoint> list = baiduMapService.searchOnPurpose(lat, lng, "中石化$福特", userInfo.getLoginId());
 		return ResponseUtil.ok("200", "Success.", list);
 	}
 

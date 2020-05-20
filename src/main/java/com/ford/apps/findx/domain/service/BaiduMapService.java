@@ -5,8 +5,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +17,6 @@ import com.ford.apps.findx.common.constant.AppConstant;
 import com.ford.apps.findx.data.dao.LocationPointMapper;
 import com.ford.apps.findx.data.entity.LocationPoint;
 import com.ford.apps.findx.domain.model.MapResult;
-import com.ford.apps.findx.web.vo.UserInfoVo;
 
 @Service
 public class BaiduMapService {
@@ -28,25 +25,21 @@ public class BaiduMapService {
 	private String BAIDU_AK = null;
 
 	@Autowired
-	private HttpSession session = null;
-
-	@Autowired
 	private LocationPointMapper locationPointMapper = null;
 
 	@Transactional
-	public List<LocationPoint> searchOnPurpose(String lat, String lng) {
+	public List<LocationPoint> searchOnPurpose(String lat, String lng, String query, String username) {
 		RestTemplate restTemplate = new RestTemplate();
 		String url2 = AppConstant.BAIDU_MAP_SEARCH_API_HEAD_PART
-			+ "?query=中石化$福特&location=" + lat + "," + lng
+			+ "?query=" + query + "&location=" + lat + "," + lng
 			+ "&radius=" + AppConstant.BAIDU_MAP_SEARCH_RADIUS
 			+ "&output=json&ak=" + BAIDU_AK;
 		ResponseEntity<String> res2 = restTemplate.getForEntity(url2, String.class);
 		String info = res2.getBody();
 		MapResult mapResult = JSON.parseObject(info, MapResult.class);
-		UserInfoVo user = (UserInfoVo)session.getAttribute(AppConstant.USER_CONFIG);
 		List<LocationPoint> lps = mapResult.getResults().stream()
 			.map(p -> new LocationPoint(0, p.getName(), p.getAddress(), p.getProvince(), p.getCity(),
-				p.getArea(), p.getStreet_id(), user.getLoginId(), (new Date()))).collect(Collectors.toList());
+				p.getArea(), p.getStreet_id(), username, (new Date()))).collect(Collectors.toList());
 		locationPointMapper.insertBatch(lps);
 		return lps;
 	}
