@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="basic-panel panel panel-default">
-				<div class="text-center"><img width="350px" height="115px" src="<c:url value="/resources/image/logo_main.png"/>"></div>
+				<div class="text-center"><img src="<c:url value="${USER_CONFIG.avatarUrl}"/>"></div>
 				<div class="panel-heading">
 					<h3 class="panel-title">GLOBAL SYSTEM INFO PAGE :: Result from GitHub</h3>
 				</div>

@@ -25,6 +25,7 @@ import com.ford.apps.findx.web.vo.UserInfoVo;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 @Api(tags="API RESTful Services")
 @Controller
@@ -55,7 +56,8 @@ public class ApiController {
 	@RequiresRoles(value={"ADMIN","USER"}, logical=Logical.OR)
 	@GetMapping(value="/api/user/{id}")
 	@ResponseBody
-	public Object apiOfGetUserById(@PathVariable(required=true, name="id") long id) {
+	public Object apiOfGetUserById(@ApiParam(value="userId, i.e., (1)", required=true)
+		@PathVariable(required=true, name="id") long id) {
 		User user = userService.getUserById(id);
 		return ResponseUtil.ok("200", "Success.", user);
 	}
@@ -73,7 +75,9 @@ public class ApiController {
 	@RequiresRoles(value={"ADMIN","USER"}, logical=Logical.OR)
 	@GetMapping("/api/map/search")
 	@ResponseBody
-	public Object apiOfSearchOnMap(@RequestParam(required=true, name="lat") String lat,
+	public Object apiOfSearchOnMap(@ApiParam(value="the latitude, i.e., 39.915", required=true)
+		@RequestParam(required=true, name="lat") String lat,
+		@ApiParam(value="the longitude, i.e., 116.404", required=true)
 		@RequestParam(required=true, name="lng") String lng) {
 		UserInfoVo userInfo = (UserInfoVo)session.getAttribute(AppConstant.USER_CONFIG);
 		List<LocationPoint> list = baiduMapService.searchOnPurpose(lat, lng, "中石化$福特", userInfo.getLoginId());
