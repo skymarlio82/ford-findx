@@ -23,6 +23,10 @@ import com.ford.apps.findx.domain.service.UserService;
 import com.ford.apps.findx.util.ResponseUtil;
 import com.ford.apps.findx.web.vo.UserInfoVo;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(tags="API RESTful Services")
 @Controller
 public class ApiController {
 
@@ -38,6 +42,7 @@ public class ApiController {
 	@Autowired
 	private HttpSession session = null;
 
+	@ApiOperation(value="User try to logout", nickname="Findx")
 	@RequiresRoles(value={"ADMIN","USER"}, logical=Logical.OR)
 	@GetMapping(value="/api/logout/user")
 	@ResponseBody
@@ -46,6 +51,7 @@ public class ApiController {
 		return ResponseUtil.ok("200", "User logout success.");
 	}
 
+	@ApiOperation(value="Get user by id", nickname="Findx")
 	@RequiresRoles(value={"ADMIN","USER"}, logical=Logical.OR)
 	@GetMapping(value="/api/user/{id}")
 	@ResponseBody
@@ -54,6 +60,7 @@ public class ApiController {
 		return ResponseUtil.ok("200", "Success.", user);
 	}
 
+	@ApiOperation(value="Get all users", nickname="Findx")
 	@RequiresRoles("USER")
 	@GetMapping(value="/api/users/all")
 	@ResponseBody
@@ -62,6 +69,7 @@ public class ApiController {
 		return ResponseUtil.ok("200", "Success.", userList);
 	}
 
+	@ApiOperation(value="Search on Baidu Map for 中石化$福特", nickname="Findx")
 	@RequiresRoles(value={"ADMIN","USER"}, logical=Logical.OR)
 	@GetMapping("/api/map/search")
 	@ResponseBody
@@ -72,6 +80,7 @@ public class ApiController {
 		return ResponseUtil.ok("200", "Success.", list);
 	}
 
+	@ApiOperation(value="Analysis most popular site (中石化$福特)", nickname="Findx")
 	@RequiresRoles("ADMIN")
 	@GetMapping("/api/map/tops")
 	@ResponseBody
