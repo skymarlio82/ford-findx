@@ -4,6 +4,8 @@
 - 原先计划是直接将应用部署到我的阿里云ECS服务器上的，但是由于阿里云访问GitHub在国外的API服务器有“长城防火墙”和谐的问题。所以说整个演示流程都是在我个人的本地机上的。(本地机有安装VPN)
 - 测试用的user和role的配置，username就是你的GitHub的LoginId
 ![image](https://github.com/skymarlio82/ford-findx/blob/master/screens/pic09.png)
+- swagger: ease to test apis
+![image](https://github.com/skymarlio82/ford-findx/blob/master/screens/pic10.png)
 
 ## API URL explain
 - http://localhost:8080/ford-findx/ (登录的形式化主页面，点击按钮后会跳到github后台做用户名密码校验)
