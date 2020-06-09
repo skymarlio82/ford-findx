@@ -12,15 +12,15 @@ import com.ford.apps.findx.util.ResponseUtil;
 @ControllerAdvice
 public class GlobalExceptionController {
 
-	@ExceptionHandler(UnauthorizedException.class)
-	@ResponseBody
-	public Object handleUnauthorizedException(Exception ex) {
-		return ResponseUtil.fail("401", ex.getMessage());
-	}
+    @ExceptionHandler(UnauthorizedException.class)
+    @ResponseBody
+    public Object handleUnauthorizedException(Exception ex) {
+        return ResponseUtil.fail("401", ex.getMessage());
+    }
 
-	@ExceptionHandler(Exception.class)
-	@ResponseBody
-	public Object handleException(Exception ex) {
-		return ResponseUtil.fail("500", ex.getMessage());
-	}
+    @ExceptionHandler(Exception.class)
+    @ResponseBody
+    public Object handleException(Exception ex) {
+        return ResponseUtil.fail("500", ex.getMessage());
+    }
 }

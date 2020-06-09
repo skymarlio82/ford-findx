@@ -3,76 +3,76 @@ package com.ford.apps.findx.web.vo;
 
 public class UserInfoVo {
 
-	private String loginId = null;
-	private String avatarUrl = null;
-	private String userName = null;
-	private String userEmail = null;
-	private String accessToken = null;
-	private String localToken = null;
+    private String loginId = null;
+    private String avatarUrl = null;
+    private String userName = null;
+    private String userEmail = null;
+    private String accessToken = null;
+    private String localToken = null;
 
-	public UserInfoVo() {
-		
-	}
+    public UserInfoVo() {
 
-	public UserInfoVo(String loginId, String avatarUrl, String userName, String userEmail, String accessToken) {
-		this.loginId = loginId;
-		this.avatarUrl = avatarUrl;
-		this.userName = userName;
-		this.userEmail = userEmail;
-		this.accessToken = accessToken;
-	}
+    }
 
-	@Override
-	public String toString() {
-		return "UserInfoVo#{loginId=" + loginId + ",avatarUrl=" + avatarUrl + ",userName=" + userName
-			+ ",userEmail=" + userEmail + ",accessToken=" + accessToken + ",localToken=" + localToken + "}";
-	}
+    public UserInfoVo(String loginId, String avatarUrl, String userName, String userEmail, String accessToken) {
+        this.loginId = loginId;
+        this.avatarUrl = avatarUrl;
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.accessToken = accessToken;
+    }
 
-	public String getLoginId() {
-		return loginId;
-	}
+    @Override
+    public String toString() {
+        return "UserInfoVo#{loginId=" + loginId + ",avatarUrl=" + avatarUrl + ",userName=" + userName
+            + ",userEmail=" + userEmail + ",accessToken=" + accessToken + ",localToken=" + localToken + "}";
+    }
 
-	public void setLoginId(String loginId) {
-		this.loginId = loginId;
-	}
+    public String getLoginId() {
+        return loginId;
+    }
 
-	public String getAvatarUrl() {
-		return avatarUrl;
-	}
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
+    }
 
-	public void setAvatarUrl(String avatarUrl) {
-		this.avatarUrl = avatarUrl;
-	}
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
 
-	public String getUserName() {
-		return userName;
-	}
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    public String getUserName() {
+        return userName;
+    }
 
-	public String getUserEmail() {
-		return userEmail;
-	}
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
-	}
+    public String getUserEmail() {
+        return userEmail;
+    }
 
-	public String getAccessToken() {
-		return accessToken;
-	}
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
 
-	public void setAccessToken(String accessToken) {
-		this.accessToken = accessToken;
-	}
+    public String getAccessToken() {
+        return accessToken;
+    }
 
-	public String getLocalToken() {
-		return localToken;
-	}
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
 
-	public void setLocalToken(String localToken) {
-		this.localToken = localToken;
-	}
+    public String getLocalToken() {
+        return localToken;
+    }
+
+    public void setLocalToken(String localToken) {
+        this.localToken = localToken;
+    }
 }

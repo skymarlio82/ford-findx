@@ -11,7 +11,10 @@ import com.ford.apps.findx.data.entity.User;
 public interface UserMapper {
 
     User findByUsername(String username);
+
     User findById(long id);
+
     List<User> findAll();
+
     void updatePwdByName(String username, String password);
 }

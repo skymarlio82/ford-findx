@@ -11,15 +11,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/").setViewName("forward:/index.jsp");
-		registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
-		super.addViewControllers(registry);
-	}
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("forward:/index.jsp");
+        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
+        super.addViewControllers(registry);
+    }
 
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		
-	}
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+
+    }
 }

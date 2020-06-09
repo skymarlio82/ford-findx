@@ -26,42 +26,42 @@ import java.util.stream.Collectors;
 
 public class SimpleAuthorizingRealm extends AuthorizingRealm {
 
-	@Autowired
-	private UserService userService = null;
+    @Autowired
+    private UserService userService = null;
 
-	@Override
-	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-		UsernamePasswordToken upToken = (UsernamePasswordToken) token;
-		String username = upToken.getUsername();
-		String password = new String(upToken.getPassword());
-		if (StringUtils.isEmpty(username)) {
-			throw new AccountException("Username required.");
-		}
-		if (StringUtils.isEmpty(password)) {
-			throw new AccountException("Password required.");
-		}
-		User user = userService.getUserByName(username);
-		if (user == null) {
-			throw new UnknownAccountException("User (" + username + ") not existed.");
-		}
-		SimpleMd5PasswordEncoder encoder = new SimpleMd5PasswordEncoder();
-		if (!encoder.matches(password, user.getPassword())) {
-			throw new UnknownAccountException("Username (" + username + ") and its password not matched.");
-		}
-		return new SimpleAuthenticationInfo(user, password, getName());
-	}
+    @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+        UsernamePasswordToken upToken = (UsernamePasswordToken) token;
+        String username = upToken.getUsername();
+        String password = new String(upToken.getPassword());
+        if (StringUtils.isEmpty(username)) {
+            throw new AccountException("Username required.");
+        }
+        if (StringUtils.isEmpty(password)) {
+            throw new AccountException("Password required.");
+        }
+        User user = userService.getUserByName(username);
+        if (user == null) {
+            throw new UnknownAccountException("User (" + username + ") not existed.");
+        }
+        SimpleMd5PasswordEncoder encoder = new SimpleMd5PasswordEncoder();
+        if (!encoder.matches(password, user.getPassword())) {
+            throw new UnknownAccountException("Username (" + username + ") and its password not matched.");
+        }
+        return new SimpleAuthenticationInfo(user, password, getName());
+    }
 
-	@Override
-	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		if (principals == null) {
-			throw new AuthorizationException("PrincipalCollection method argument required.");
-		}
-		User user = (User) getAvailablePrincipal(principals);
-		Set<String> permissions = new HashSet<String>();
-		Set<String> roles = user.getAuthorities().stream().map(a -> a.getName()).collect(Collectors.toSet());
-		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-		info.setRoles(roles);
-		info.setStringPermissions(permissions);
-		return info;
-	}
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+        if (principals == null) {
+            throw new AuthorizationException("PrincipalCollection method argument required.");
+        }
+        User user = (User) getAvailablePrincipal(principals);
+        Set<String> permissions = new HashSet<String>();
+        Set<String> roles = user.getAuthorities().stream().map(a -> a.getName()).collect(Collectors.toSet());
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        info.setRoles(roles);
+        info.setStringPermissions(permissions);
+        return info;
+    }
 }

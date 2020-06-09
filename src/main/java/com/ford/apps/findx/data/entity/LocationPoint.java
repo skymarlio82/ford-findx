@@ -5,102 +5,102 @@ import java.util.Date;
 
 public class LocationPoint {
 
-	private long id = 0L;
-	private String name = null;
-	private String address = null;
-	private String province = null;
-	private String city = null;
-	private String area = null;
-	private String streetId = null;
-	private String loginId = null;
-	private Date dateTime = null;
+    private long id = 0L;
+    private String name = null;
+    private String address = null;
+    private String province = null;
+    private String city = null;
+    private String area = null;
+    private String streetId = null;
+    private String loginId = null;
+    private Date dateTime = null;
 
-	public LocationPoint() {
-		
-	}
+    public LocationPoint() {
 
-	public LocationPoint(long id, String name, String address, String province,
-		String city, String area, String streetId, String loginId, Date dateTime) {
-		this.id = id;
-		this.name = name;
-		this.address = address;
-		this.province = province;
-		this.city = city;
-		this.area = area;
-		this.streetId = streetId;
-		this.loginId = loginId;
-		this.dateTime = dateTime;
-	}
+    }
 
-	public long getId() {
-		return id;
-	}
+    public LocationPoint(long id, String name, String address, String province,
+                         String city, String area, String streetId, String loginId, Date dateTime) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.province = province;
+        this.city = city;
+        this.area = area;
+        this.streetId = streetId;
+        this.loginId = loginId;
+        this.dateTime = dateTime;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public String getProvince() {
-		return province;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public void setProvince(String province) {
-		this.province = province;
-	}
+    public String getProvince() {
+        return province;
+    }
 
-	public String getCity() {
-		return city;
-	}
+    public void setProvince(String province) {
+        this.province = province;
+    }
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+    public String getCity() {
+        return city;
+    }
 
-	public String getArea() {
-		return area;
-	}
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-	public void setArea(String area) {
-		this.area = area;
-	}
+    public String getArea() {
+        return area;
+    }
 
-	public String getStreetId() {
-		return streetId;
-	}
+    public void setArea(String area) {
+        this.area = area;
+    }
 
-	public void setStreetId(String streetId) {
-		this.streetId = streetId;
-	}
+    public String getStreetId() {
+        return streetId;
+    }
 
-	public String getLoginId() {
-		return loginId;
-	}
+    public void setStreetId(String streetId) {
+        this.streetId = streetId;
+    }
 
-	public void setLoginId(String loginId) {
-		this.loginId = loginId;
-	}
+    public String getLoginId() {
+        return loginId;
+    }
 
-	public Date getDateTime() {
-		return dateTime;
-	}
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
+    }
 
-	public void setDateTime(Date dateTime) {
-		this.dateTime = dateTime;
-	}
+    public Date getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
+    }
 }

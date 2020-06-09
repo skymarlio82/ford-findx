@@ -34,61 +34,61 @@ import com.ford.apps.findx.web.vo.UserInfoVo;
 @Service
 public class AuthService {
 
-	@Value("${github-client-secret}")
-	private String GITHUB_FORD_FINDX_CLIENT_SECRET = null;
+    @Value("${github-client-secret}")
+    private String GITHUB_FORD_FINDX_CLIENT_SECRET = null;
 
-	@Autowired
-	private UserService userService = null;
+    @Autowired
+    private UserService userService = null;
 
-	public void logout() {
-		SecurityUtils.getSubject().logout();
-	}
+    public void logout() {
+        SecurityUtils.getSubject().logout();
+    }
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@Transactional
-	public void loginAsOAuth2(String code, HttpServletRequest request, HttpServletResponse response) {
-		RestTemplate restTemplate = new RestTemplate();
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
-		List<MediaType> accepts = new ArrayList<>();
-		accepts.add(MediaType.APPLICATION_JSON_UTF8);
-		headers.setAccept(accepts);
-		HttpEntity<String> req = new HttpEntity<>(headers);
-		String url1 = AppConstant.LOGIN_OAUTH_TOKEN_HEAD_PART
-			+ "?client_id=" + AppConstant.GITHUB_FORD_FINDX_CLIENT_ID
-			+ "&client_secret=" + GITHUB_FORD_FINDX_CLIENT_SECRET
-			+ "&code=" + code;
-		ResponseEntity<AccessTokenVo> res1 = restTemplate.postForEntity(url1, req, AccessTokenVo.class);
-		AccessTokenVo atvo = res1.getBody();
-		headers.set("Authorization", "token " + atvo.getAccess_token());
-		String url2 = AppConstant.API_USER_INFO_HEAD_PART + "?access_token=" + atvo.getAccess_token();
-		ResponseEntity<HashMap> res2 = restTemplate.getForEntity(url2, HashMap.class);
-		HashMap<String, String> info = res2.getBody();
-		UserInfoVo userInfo = new UserInfoVo(info.get("login"), info.get("avatar_url"),
-			info.get("name"), info.get("email"), atvo.getAccess_token());
-		User user = userService.getUserByName(userInfo.getLoginId());
-		if (user == null) {
-			response.setHeader("Location", request.getContextPath() + "/user/default/logout?err=1");
-			response.setStatus(302);
-			return;
-		}
-		userService.updatePassword(userInfo.getLoginId(),
-			(new SimpleMd5PasswordEncoder()).encode(userInfo.getLoginId()));
-		Subject currentUser = SecurityUtils.getSubject();
-		try {
-			currentUser.login(new UsernamePasswordToken(userInfo.getLoginId(), userInfo.getLoginId()));
-		} catch (UnknownAccountException uae) {
-			uae.printStackTrace();
-		} catch (LockedAccountException lae) {
-			lae.printStackTrace();
-		} catch (AuthenticationException ae) {
-			ae.printStackTrace();
-		}
-		currentUser = SecurityUtils.getSubject();
-		Session session = currentUser.getSession();
-		userInfo.setLocalToken(session.getId().toString());
-		session.setAttribute(AppConstant.USER_CONFIG, userInfo);
-		response.setHeader("Location", request.getContextPath() + "/system/dashboard?token=" + session.getId());
-		response.setStatus(302);
-	}
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @Transactional
+    public void loginAsOAuth2(String code, HttpServletRequest request, HttpServletResponse response) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        List<MediaType> accepts = new ArrayList<>();
+        accepts.add(MediaType.APPLICATION_JSON_UTF8);
+        headers.setAccept(accepts);
+        HttpEntity<String> req = new HttpEntity<>(headers);
+        String url1 = AppConstant.LOGIN_OAUTH_TOKEN_HEAD_PART
+            + "?client_id=" + AppConstant.GITHUB_FORD_FINDX_CLIENT_ID
+            + "&client_secret=" + GITHUB_FORD_FINDX_CLIENT_SECRET
+            + "&code=" + code;
+        ResponseEntity<AccessTokenVo> res1 = restTemplate.postForEntity(url1, req, AccessTokenVo.class);
+        AccessTokenVo atvo = res1.getBody();
+        headers.set("Authorization", "token " + atvo.getAccess_token());
+        String url2 = AppConstant.API_USER_INFO_HEAD_PART + "?access_token=" + atvo.getAccess_token();
+        ResponseEntity<HashMap> res2 = restTemplate.getForEntity(url2, HashMap.class);
+        HashMap<String, String> info = res2.getBody();
+        UserInfoVo userInfo = new UserInfoVo(info.get("login"), info.get("avatar_url"),
+            info.get("name"), info.get("email"), atvo.getAccess_token());
+        User user = userService.getUserByName(userInfo.getLoginId());
+        if (user == null) {
+            response.setHeader("Location", request.getContextPath() + "/user/default/logout?err=1");
+            response.setStatus(302);
+            return;
+        }
+        userService.updatePassword(userInfo.getLoginId(),
+            (new SimpleMd5PasswordEncoder()).encode(userInfo.getLoginId()));
+        Subject currentUser = SecurityUtils.getSubject();
+        try {
+            currentUser.login(new UsernamePasswordToken(userInfo.getLoginId(), userInfo.getLoginId()));
+        } catch (UnknownAccountException uae) {
+            uae.printStackTrace();
+        } catch (LockedAccountException lae) {
+            lae.printStackTrace();
+        } catch (AuthenticationException ae) {
+            ae.printStackTrace();
+        }
+        currentUser = SecurityUtils.getSubject();
+        Session session = currentUser.getSession();
+        userInfo.setLocalToken(session.getId().toString());
+        session.setAttribute(AppConstant.USER_CONFIG, userInfo);
+        response.setHeader("Location", request.getContextPath() + "/system/dashboard?token=" + session.getId());
+        response.setStatus(302);
+    }
 }

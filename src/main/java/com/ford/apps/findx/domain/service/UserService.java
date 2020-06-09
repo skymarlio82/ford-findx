@@ -13,26 +13,26 @@ import com.ford.apps.findx.data.entity.User;
 @Service
 public class UserService {
 
-	@Autowired
-	private UserMapper userMapper = null;
+    @Autowired
+    private UserMapper userMapper = null;
 
-	@Transactional(readOnly=true)
-	public User getUserByName(String userName) {
-		return userMapper.findByUsername(userName);
-	}
+    @Transactional(readOnly = true)
+    public User getUserByName(String userName) {
+        return userMapper.findByUsername(userName);
+    }
 
-	@Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public User getUserById(long id) {
         return userMapper.findById(id);
     }
 
-	@Transactional(readOnly=true)
-	public List<User> getAllUsers() {
-		return userMapper.findAll();
-	}
+    @Transactional(readOnly = true)
+    public List<User> getAllUsers() {
+        return userMapper.findAll();
+    }
 
-	@Transactional
-	public void updatePassword(String username, String password) {
-		userMapper.updatePwdByName(username, password);
-	}
+    @Transactional
+    public void updatePassword(String username, String password) {
+        userMapper.updatePwdByName(username, password);
+    }
 }

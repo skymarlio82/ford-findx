@@ -10,18 +10,18 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 @Configuration
 public class Tiles3Config {
 
-	@Bean
-	public TilesConfigurer tilesConfigurer() {
-		final TilesConfigurer configurer = new TilesConfigurer();
-		configurer.setDefinitions(new String[] { "WEB-INF/tiles-layout-defs.xml" });
-		configurer.setCheckRefresh(true);
-		return configurer;
-	}
+    @Bean
+    public TilesConfigurer tilesConfigurer() {
+        final TilesConfigurer configurer = new TilesConfigurer();
+        configurer.setDefinitions(new String[]{"WEB-INF/tiles-layout-defs.xml"});
+        configurer.setCheckRefresh(true);
+        return configurer;
+    }
 
-	@Bean
-	public TilesViewResolver tilesViewResolver() {
-		final TilesViewResolver resolver = new TilesViewResolver();
-		resolver.setViewClass(TilesView.class);
-		return resolver;
-	}
+    @Bean
+    public TilesViewResolver tilesViewResolver() {
+        final TilesViewResolver resolver = new TilesViewResolver();
+        resolver.setViewClass(TilesView.class);
+        return resolver;
+    }
 }

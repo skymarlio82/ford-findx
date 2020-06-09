@@ -23,32 +23,32 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-	@Bean
-	public Docket userApi() {
-		List<Parameter> pars = new ArrayList<Parameter>();
-		ParameterBuilder tokenPar = new ParameterBuilder();
-		tokenPar.name("X-Author-Token")
-			.description("token")
-			.modelRef(new ModelRef("string"))
-			.parameterType("header")
-			.required(true)
-			.build();
-		pars.add(tokenPar.build());
-		return new Docket(DocumentationType.SWAGGER_2)
-			.select()
-			.apis(RequestHandlerSelectors.basePackage("com.ford.apps.findx.web.controller"))
-			.paths(PathSelectors.ant("/api/**"))
-			.build()
-			.globalOperationParameters(pars)
-			.groupName("ford-findx")
-			.apiInfo(apiInfo());
-	}
+    @Bean
+    public Docket userApi() {
+        List<Parameter> pars = new ArrayList<Parameter>();
+        ParameterBuilder tokenPar = new ParameterBuilder();
+        tokenPar.name("X-Author-Token")
+            .description("token")
+            .modelRef(new ModelRef("string"))
+            .parameterType("header")
+            .required(true)
+            .build();
+        pars.add(tokenPar.build());
+        return new Docket(DocumentationType.SWAGGER_2)
+            .select()
+            .apis(RequestHandlerSelectors.basePackage("com.ford.apps.findx.web.controller"))
+            .paths(PathSelectors.ant("/api/**"))
+            .build()
+            .globalOperationParameters(pars)
+            .groupName("ford-findx")
+            .apiInfo(apiInfo());
+    }
 
-	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder()
-			.title("Swagger2 for Ford Findx")
-			.contact(new Contact("JITAO", "https://github.com/skymarlio82", "jitao.liu@aliyun.com"))
-			.version("1.0")
-			.build();
-	}
+    private ApiInfo apiInfo() {
+        return new ApiInfoBuilder()
+            .title("Swagger2 for Ford Findx")
+            .contact(new Contact("JITAO", "https://github.com/skymarlio82", "jitao.liu@aliyun.com"))
+            .version("1.0")
+            .build();
+    }
 }
