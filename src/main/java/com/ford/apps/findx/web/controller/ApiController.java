@@ -52,6 +52,8 @@ public class ApiController {
         return ResponseUtil.ok("200", "User logout success.");
     }
 
+    int a = 0;
+
     @ApiOperation(value = "Get user by id", nickname = "Findx")
     @RequiresRoles(value = {"ADMIN", "USER"}, logical = Logical.OR)
     @GetMapping(value = "/api/user/{id}")
@@ -59,6 +61,8 @@ public class ApiController {
     public Object apiOfGetUserById(@ApiParam(value = "userId, i.e., (1)", required = true)
                                    @PathVariable(required = true, name = "id") long id) {
         User user = userService.getUserById(id);
+        a++;
+        session.setAttribute("AAA", "BBB" + a);
         return ResponseUtil.ok("200", "Success.", user);
     }
 
@@ -68,6 +72,7 @@ public class ApiController {
     @ResponseBody
     public Object apiOfGetAllUsers() {
         List<User> userList = userService.getAllUsers();
+        System.out.println("apiOfGetAllUsers = " + session.getAttribute("AAA"));
         return ResponseUtil.ok("200", "Success.", userList);
     }
 
