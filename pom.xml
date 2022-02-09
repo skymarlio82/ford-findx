@@ -13,7 +13,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<tiles-jsp.version>3.0.4</tiles-jsp.version>
-		<shiro.version>1.4.1</shiro.version>
+		<shiro.version>1.7.1</shiro.version>
 		<druid-spring-boot.version>1.1.17</druid-spring-boot.version>
 		<mybatis-spring-boot.version>2.1.1</mybatis-spring-boot.version>
 		<jasypt.version>2.0.0</jasypt.version>
