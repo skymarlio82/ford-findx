@@ -18,7 +18,7 @@
 		<mybatis-spring-boot.version>2.1.1</mybatis-spring-boot.version>
 		<jasypt.version>2.0.0</jasypt.version>
 		<fastjson.version>1.2.49</fastjson.version>
-		<swagger.version>2.7.0</swagger.version>
+		<swagger.version>2.10.0</swagger.version>
 	</properties>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
